@@ -24,8 +24,12 @@
                 </div>
                 <div class="footer-section">
                     <h3 class="footer-title">FOLLOW US ON LINKEDIN</h3>
-                    <p>linkedin.com/in/valdaorina</p>
-                    <p>linkedin.com/in/diana-butirina</p>
+                    <a href="https://linkedin.com/in/valdaorina" target="_blank">
+                        linkedin.com/in/valdaorina
+                    </a>
+                    <a href="https://linkedin.com/in/diana-butirina" target="_blank">
+                        linkedin.com/in/diana-butirina
+                    </a>
                 </div>
             </div>
         </footer>
@@ -109,6 +113,13 @@ export default {
     flex: 1 1 250px;
     margin: 10px;
 }
+
+.footer-section a {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+}
+
 .footer-section h3 {
     margin-top: 10px;
     margin-bottom: 20px;
@@ -117,10 +128,6 @@ export default {
 }
 .footer-section p {
     margin: 2px 0;
-}
-.footer-section a {
-    color: #1e73ff;
-    text-decoration: none;
 }
 
 @media (max-width: 768px) {

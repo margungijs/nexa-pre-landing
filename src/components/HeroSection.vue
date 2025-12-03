@@ -195,6 +195,7 @@ export default {
     border-radius: 12px;
     font-size: 20px;
     color: black;
+    cursor: pointer;
 }
 
 /* --- MODAL --- */
@@ -252,6 +253,7 @@ export default {
     background: white;
     color: black;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .success-message {
