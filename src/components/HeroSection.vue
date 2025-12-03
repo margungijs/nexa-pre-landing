@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { db } from '@/main.js';
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 export default {
     name: "HeroSection",
 
@@ -82,16 +84,18 @@ export default {
                 return;
             }
 
-            const scriptURL = "https://script.google.com/macros/s/AKfycbyHV_ncs3SWuisMRAlnmhtWpUZEZuauCGbjG8-LSFqQEyePECZ3Snu75QLdvsbQmA/exec";
+            if(!this.validateEmail(this.email)){
+                this.successMessage = "Invalid email address.";
+                return;
+            }
 
             try {
-                const formData = new URLSearchParams();
-                formData.append("email", this.email);
+                const subscribersCollection = collection(db, 'subscribers');
 
-                await fetch(scriptURL, {
-                    method: "POST",
-                    body: formData
-                });
+                await addDoc(subscribersCollection, {
+                    email: this.email,
+                    timestamp: serverTimestamp()
+                })
 
                 this.successMessage = "You're subscribed!";
                 this.email = "";
