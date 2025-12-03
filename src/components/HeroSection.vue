@@ -23,9 +23,8 @@
             <form @submit.prevent="submitEmail" class="modal-form">
                 <input
                     v-model="email"
-                    type="email"
+                    type="text"
                     placeholder="you@example.com"
-                    required
                     class="modal-input"
                 />
 
