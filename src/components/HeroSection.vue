@@ -77,36 +77,30 @@ export default {
         },
 
         async submitEmail() {
-            if (!this.validateEmail(this.email)) {
-                this.successMessage = "Please enter a valid email.";
+            if (!this.email) {
+                this.successMessage = "Please enter your email.";
                 return;
             }
 
-            const scriptURL = "https://script.google.com/macros/s/AKfycbxqSQpIHflzoWcxyrtN0SZNHqznWQO1A6j-WbTI6ou45u0sXFP-7HivSkmSjNK_0WZM/exec";
+            const scriptURL = "https://script.google.com/macros/s/AKfycbyHV_ncs3SWuisMRAlnmhtWpUZEZuauCGbjG8-LSFqQEyePECZ3Snu75QLdvsbQmA/exec";
 
             try {
-                console.log("📤 Sending email to Google Script:", this.email);
+                const formData = new URLSearchParams();
+                formData.append("email", this.email);
 
-                const response = await fetch(scriptURL, {
+                await fetch(scriptURL, {
                     method: "POST",
-                    mode: "cors",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email: this.email })
+                    body: formData
                 });
-
-                const data = await response.json();
-                console.log(data)
 
                 this.successMessage = "You're subscribed!";
                 this.email = "";
 
                 setTimeout(() => this.closeModal(), 1500);
-
             } catch (err) {
-                console.error("❌ Fetch error:", err);
+                console.error(err);
                 this.successMessage = "Something went wrong. Please try again.";
             }
-
         }
     }
 };
